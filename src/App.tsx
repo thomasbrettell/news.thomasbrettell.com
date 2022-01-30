@@ -1,25 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import client from './contentful/client'
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 function App() {
+  const [content, setContent] = useState<any>('')
+
+  useEffect(() => {
+    client.getEntry('2C2Y9loHDESKBQowKbULcR').then((data: any) => {
+      setContent(data.fields.content)
+    })
+  }, [])
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      {documentToReactComponents(content)}
+    </main>
   );
 }
 
