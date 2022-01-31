@@ -22,6 +22,7 @@ const useArticle = (slug: string) => {
           author
           date
           link
+          organisation
           content{
             json
           }
