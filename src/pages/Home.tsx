@@ -1,4 +1,5 @@
 import useArticles from '../hooks/useArticles';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
   const articles = useArticles();
@@ -9,7 +10,7 @@ export default function Home() {
         <ul>
           {articles.map((article) => (
             <li key={article.sys.id}>
-              <a href={`/${article.slug}`}>{article.title}</a>
+              <Link to={`/${article.slug}`}>{article.title}</Link>
             </li>
           ))}
         </ul>
