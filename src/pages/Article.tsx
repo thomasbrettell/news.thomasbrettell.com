@@ -3,6 +3,7 @@ import useArticle from '../hooks/useArticle';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { Fragment } from 'react';
 
 const Main = styled.main`
   margin: auto;
@@ -31,7 +32,9 @@ const Article = () => {
       <Main>
         <h1>{title}</h1>
         <p>
-          <strong>Author:</strong> {author}
+          <strong>Author:</strong> {author.map((auth,i) => (
+            <Fragment key={auth}>{auth}{i!==author.length-1 ? ', ' : ''}</Fragment>
+            ))}
         </p>
         <p>
           <strong>Date:</strong> {new Date(date).toLocaleDateString()}
